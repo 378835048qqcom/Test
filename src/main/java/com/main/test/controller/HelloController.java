@@ -40,8 +40,8 @@ public class HelloController {
      * @Date 2019/1/29
      **/
     @ResponseBody
-    @RequestMapping("/index2")
-    public Optional<User> index(long id) {
+    @RequestMapping("/indexbody")
+    public Optional<User> indexbody(long id) {
         Optional<User> user = userRepository.findById(id);
         return user;
     }
