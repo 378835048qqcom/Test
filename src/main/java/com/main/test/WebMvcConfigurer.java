@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @description  拦截器配置类
  */
 @SpringBootConfiguration
-public class WebMvnConfigurer extends WebMvcConfigurerAdapter{
+public class WebMvcConfigurer extends WebMvcConfigurerAdapter{
 
     @Autowired
     private WebInterceptor webInterceptor;
