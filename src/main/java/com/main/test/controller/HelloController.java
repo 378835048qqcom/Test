@@ -2,6 +2,8 @@ package com.main.test.controller;
 
 import com.main.test.enetity.User;
 import com.main.test.repository.UserRepository;
+import com.main.test.service.impl.UserserviceImpl;
+import com.main.test.util.HelloSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,12 @@ public class HelloController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserserviceImpl userservice;
+
+    @Autowired
+    private HelloSender helloSender;
 
     /**
      * @Author WangLu
@@ -42,6 +50,34 @@ public class HelloController {
     @ResponseBody
     @RequestMapping("/indexbody")
     public Optional<User> indexbody(long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user;
+    }
+
+    /**
+     * @Author WangLu
+     * @Description //TODO
+     * @Date 2019/1/29
+     **/
+    @ResponseBody
+    @RequestMapping("/add")
+    public Optional<User> add(long id) {
+        userservice.list();
+        Optional<User> user = userRepository.findById(id);
+        return user;
+    }
+
+    /**
+     * @Author WangLu
+     * @Description //TODO
+     * @Date 2019/1/29
+     **/
+    @ResponseBody
+    @RequestMapping("/rabbmq")
+    public Optional<User> rabbmq(long id) {
+        for (int i = 0; i < 10 ; i ++) {
+            helloSender.send();
+        }
         Optional<User> user = userRepository.findById(id);
         return user;
     }
