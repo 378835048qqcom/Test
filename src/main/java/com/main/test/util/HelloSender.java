@@ -22,6 +22,7 @@ public class HelloSender {
         String context = "hello " + new Date().getTime();
         System.out.println("Sender : " + context);
         this.rabbitTemplate.convertAndSend("hello", context);
+        rabbitTemplate.receive("hello");
     }
 
 }

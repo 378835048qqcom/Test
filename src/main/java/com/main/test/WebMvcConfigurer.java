@@ -19,7 +19,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter{
     public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(webInterceptor).excludePathPatterns("/jw-crz/token");
 //        registry.addInterceptor(webInterceptor).addPathPatterns("/**").excludePathPatterns("/jw-crz/login").excludePathPatterns("/error");
-        registry.addInterceptor(webInterceptor).addPathPatterns("/getUser");
+//        registry.addInterceptor(webInterceptor).addPathPatterns("/getUser");
         super.addInterceptors(registry);
     }
 }

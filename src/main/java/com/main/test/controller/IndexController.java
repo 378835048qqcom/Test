@@ -27,7 +27,7 @@ public class IndexController {
      * @Description //TODO
      * @Date 2019/1/29
      **/
-    @RequestMapping("/index")
+    @RequestMapping("/indexid")
     public Optional<User> index(long id) {
         Optional<User> user = userRepository.findById(id);
         return user;
