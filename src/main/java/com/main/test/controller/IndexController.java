@@ -44,46 +44,6 @@ public class IndexController {
         return "nologin";
     }
 
-    @RequestMapping("/getUser")
-    @Cacheable(value="user",key="#id")
-    public Optional<User> getUser(long id) {
-        Optional<User> user = userRepository.findById(id);
-        System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
-        return user;
-    }
 
-    /**
-     * @Author WangLu
-     * @Description //TODO
-     * @Date 2019/1/30
-     * @param session
-     * @return java.lang.String
-     **/
-    @RequestMapping("/uid")
-    public String uid(HttpSession session) {
-        UUID uid = (UUID) session.getAttribute("uid");
-        if (uid == null) {
-            uid = UUID.randomUUID();
-        }
-        session.setAttribute("uid", uid);
-        session.setAttribute("name","ass");
-        return session.getId();
-    }
-
-    /**
-     * @Author WangLu
-     * @Description //TODO
-     * @Date 2019/1/30
-     * @param session
-     * @return java.lang.String
-     **/
-    @RequestMapping("/uid2")
-    public String uid2(HttpSession session) {
-        UUID uid = (UUID) session.getAttribute("uid");
-        if (uid == null) {
-            return "null";
-        }
-        return (String)session.getAttribute("name");
-    }
 
 }

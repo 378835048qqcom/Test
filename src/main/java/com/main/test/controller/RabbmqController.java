@@ -6,19 +6,18 @@ import com.main.test.service.impl.UserserviceImpl;
 import com.main.test.util.HelloSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Optional;
 
 /**
- * @ClassName index
+ * @ClassName RabbmqController
  * @Author WangLu
- * @Date 2019/1/29
+ * @Date 2019/3/7
  **/
 @Controller
-public class HelloController {
+public class RabbmqController {
 
     @Autowired
     private UserRepository userRepository;
@@ -26,18 +25,8 @@ public class HelloController {
     @Autowired
     private UserserviceImpl userservice;
 
-    /**
-     * @Author WangLu
-     * @Description //TODO
-     * @Date 2019/1/29
-     **/
-    @RequestMapping("/hello")
-    public String hello(Model model, long id) {
-        User user = userRepository.findById(id).get();
-        model.addAttribute("user", user);
-        model.addAttribute("name", "123");
-        return "/hello";
-    }
+    @Autowired
+    private HelloSender helloSender;
 
     /**
      * @Author WangLu
@@ -45,21 +34,11 @@ public class HelloController {
      * @Date 2019/1/29
      **/
     @ResponseBody
-    @RequestMapping("/indexbody")
-    public Optional<User> indexbody(long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user;
-    }
-
-    /**
-     * @Author WangLu
-     * @Description //TODO
-     * @Date 2019/1/29
-     **/
-    @ResponseBody
-    @RequestMapping("/add")
-    public Optional<User> add(long id) {
-        userservice.list();
+    @RequestMapping("/rabbmq")
+    public Optional<User> rabbmq(long id) {
+        for (int i = 0; i < 10 ; i ++) {
+            helloSender.send();
+        }
         Optional<User> user = userRepository.findById(id);
         return user;
     }
